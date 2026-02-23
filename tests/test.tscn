@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cettlgtxdif4d"]
+
+[ext_resource type="PackedScene" uid="uid://cx1t64q6n6hl6" path="res://scenes/player/player.tscn" id="1_yggfj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bfc6h"]
+size = Vector3(25, 0.19, 25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfc6h"]
+albedo_color = Color(0.28586262, 0.22732031, 0.19572273, 1)
+
+[node name="Test" type="Node3D" unique_id=639174084]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=1222533991]
+mesh = SubResource("BoxMesh_bfc6h")
+material = SubResource("StandardMaterial3D_bfc6h")
+
+[node name="Player" parent="." unique_id=1115908410 instance=ExtResource("1_yggfj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.212508, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1356984058]
+transform = Transform3D(1, 0, 0, 0, -0.39594626, 0.9182737, 0, -0.9182737, -0.39594626, 0, 6.6257744, -4.4738445)
