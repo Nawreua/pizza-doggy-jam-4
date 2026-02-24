@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://3kw4i2con0fx"]
+
+[ext_resource type="PackedScene" uid="uid://cx1t64q6n6hl6" path="res://scenes/player/player.tscn" id="1_xdukt"]
+[ext_resource type="Texture2D" uid="uid://bg4j3n41p84kd" path="res://assets/textures/window.png" id="2_j4gsr"]
+[ext_resource type="PackedScene" uid="uid://c6qgbxwytntu0" path="res://assets/models/door.tscn" id="3_nhgb8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7i53"]
+albedo_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s7i53"]
+material = SubResource("StandardMaterial3D_s7i53")
+size = Vector2(4, 5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xdukt"]
+data = PackedVector3Array(2, 0, 2.5, -2, 0, 2.5, 2, 0, -2.5, -2, 0, 2.5, -2, 0, -2.5, 2, 0, -2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xdukt"]
+albedo_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xdukt"]
+material = SubResource("StandardMaterial3D_xdukt")
+flip_faces = true
+size = Vector2(5, 3.25)
+orientation = 0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_j4gsr"]
+data = PackedVector3Array(0, -1.5, 2.5, 0, -1.5, -2.5, 0, 1.5, -2.5, 0, 1.5, 2.5, 0, -1.5, 2.5, 0, 1.5, -2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4gsr"]
+albedo_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j4gsr"]
+material = SubResource("StandardMaterial3D_j4gsr")
+size = Vector2(5, 3.25)
+orientation = 0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nhgb8"]
+data = PackedVector3Array(0, -1.5, -2.5, 0, -1.5, 2.5, 0, 1.5, -2.5, 0, -1.5, 2.5, 0, 1.5, 2.5, 0, 1.5, -2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nhgb8"]
+albedo_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nhgb8"]
+material = SubResource("StandardMaterial3D_nhgb8")
+size = Vector2(4, 3.25)
+orientation = 2
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_iyrh7"]
+data = PackedVector3Array(2, -1.5, 0, -2, -1.5, 0, 2, 1.5, 0, -2, -1.5, 0, -2, 1.5, 0, 2, 1.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iyrh7"]
+albedo_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iyrh7"]
+material = SubResource("StandardMaterial3D_iyrh7")
+flip_faces = true
+size = Vector2(4, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4nxun"]
+albedo_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_27s84"]
+material = SubResource("StandardMaterial3D_4nxun")
+flip_faces = true
+size = Vector2(4, 3.25)
+orientation = 2
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4nxun"]
+data = PackedVector3Array(-2, -1.625, 0, 2, -1.625, 0, 2, 1.625, 0, -2, 1.625, 0, -2, -1.625, 0, 2, 1.625, 0)
+
+[node name="Room213" type="Node3D" unique_id=1320894127]
+
+[node name="Player" parent="." unique_id=798795127 instance=ExtResource("1_xdukt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51902586, 0)
+
+[node name="Walls" type="Node" parent="." unique_id=727796655]
+
+[node name="Floor" type="MeshInstance3D" parent="Walls" unique_id=1266193801]
+mesh = SubResource("PlaneMesh_s7i53")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/Floor" unique_id=1191223260]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Floor/StaticBody3D" unique_id=1007879823]
+shape = SubResource("ConcavePolygonShape3D_xdukt")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Walls" unique_id=188097356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00008, 1.5072278, 0)
+mesh = SubResource("PlaneMesh_xdukt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/MeshInstance3D2" unique_id=1354162193]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D2/StaticBody3D" unique_id=659000011]
+shape = SubResource("ConcavePolygonShape3D_j4gsr")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Walls" unique_id=1441558605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.507, 0)
+mesh = SubResource("PlaneMesh_j4gsr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/MeshInstance3D3" unique_id=1398261935]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D3/StaticBody3D" unique_id=1678686709]
+shape = SubResource("ConcavePolygonShape3D_nhgb8")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Walls" unique_id=596311812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.507, -2.5)
+mesh = SubResource("PlaneMesh_nhgb8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/MeshInstance3D4" unique_id=1311796840]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D4/StaticBody3D" unique_id=637058408]
+shape = SubResource("ConcavePolygonShape3D_iyrh7")
+
+[node name="Ceiling" type="MeshInstance3D" parent="Walls" unique_id=740979893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+mesh = SubResource("PlaneMesh_iyrh7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls" unique_id=911711476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.507, 2.5)
+mesh = SubResource("PlaneMesh_27s84")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/MeshInstance3D" unique_id=603803882]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D/StaticBody3D" unique_id=1961961409]
+shape = SubResource("ConcavePolygonShape3D_4nxun")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=267160643]
+transform = Transform3D(1, 0, 0, 0, 0.009983092, 0.9999502, 0, -0.9999502, 0.009983092, 0, 3.664088, 0)
+light_color = Color(0.56650424, 0.52036905, 0.29595044, 1)
+spot_angle = 60.0
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1499777135]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.0372922, -2.4998412)
+texture = ExtResource("2_j4gsr")
+
+[node name="door" parent="." unique_id=1893736036 instance=ExtResource("3_nhgb8")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.27796984, 1.3951334, 2.487606)
