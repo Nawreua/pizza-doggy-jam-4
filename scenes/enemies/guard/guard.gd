@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(motion * delta)
 	# If player caught
 	if collision and collision.get_collider() is Player:
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://levels/room213/room213.tscn")
 
 func _on_sight_body_entered(body: Node3D) -> void:
 	if body is Player:
