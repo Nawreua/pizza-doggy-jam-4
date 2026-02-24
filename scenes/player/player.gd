@@ -4,6 +4,8 @@ class_name Player extends CharacterBody3D
 @export var slowdown: float = 3
 @export var rotation_speed: float = 0.5
 
+var falling_speed: float = 9.1
+
 @export var horizontal_sens: float = 0.003
 @export var vertical_sens: float = 0.003
 
@@ -25,12 +27,16 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	var input = Input.get_vector(&"turn_right", &"turn_left", &"move_backward", &"move_forward")
 	
+	# Tank control
 	rotation.y += input.x * rotation_speed * delta
-	
 	if input.y != 0:
 		var angle = Vector3.FORWARD.rotated(Vector3.UP, rotation.y)
 		velocity += sign(input.y) * angle * speed * delta
 		velocity.y = 0
+	
+	# Gravity
+	if not is_on_floor():
+		velocity.y = velocity.y - (falling_speed * delta)
 	
 	move_and_slide()
 	
