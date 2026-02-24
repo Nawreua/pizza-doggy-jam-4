@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 @export var speed: float = 5
 @export var slowdown: float = 3
@@ -18,6 +18,7 @@ func _input(event: InputEvent) -> void:
 		head.rotation.y = clamp(head.rotation.y, deg_to_rad(-60.0), deg_to_rad(60.0))
 		
 	if event is InputEventKey:
+		# Quit the game
 		if event.is_action_pressed(&"exit"):
 			get_tree().quit()
 		

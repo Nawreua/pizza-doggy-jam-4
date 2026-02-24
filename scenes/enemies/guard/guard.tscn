@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://csik5uujsuj0w"]
+
+[ext_resource type="Script" uid="uid://1s12dvjvaa0a" path="res://scenes/enemies/guard/guard.gd" id="1_g8ras"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_afuhh"]
+height = 1.8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g8ras"]
+size = Vector3(1, 1.736206, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g8ras"]
+radius = 5.0
+
+[node name="Guard" type="RigidBody3D" unique_id=491004259]
+script = ExtResource("1_g8ras")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1888721959]
+mesh = SubResource("CapsuleMesh_afuhh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1310724303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.057800293, 0)
+shape = SubResource("BoxShape3D_g8ras")
+
+[node name="Sight" type="Area3D" parent="." unique_id=735660095]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sight" unique_id=1934289708]
+shape = SubResource("SphereShape3D_g8ras")
+
+[connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
