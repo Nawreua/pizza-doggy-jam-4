@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://csik5uujsuj0w"]
 
 [ext_resource type="Script" uid="uid://1s12dvjvaa0a" path="res://scenes/enemies/guard/guard.gd" id="1_g8ras"]
+[ext_resource type="AudioStream" uid="uid://cifwjds3nvu2v" path="res://assets/sounds/cough.wav" id="2_g173s"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_afuhh"]
 height = 1.8
@@ -25,5 +26,9 @@ shape = SubResource("BoxShape3D_g8ras")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sight" unique_id=1934289708]
 shape = SubResource("SphereShape3D_g8ras")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1563524888]
+stream = ExtResource("2_g173s")
+volume_db = -10.0
 
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
