@@ -3,9 +3,9 @@
 [ext_resource type="Material" uid="uid://d2wuvwotxphge" path="res://assets/materials/wall_grey.tres" id="1_0hhuj"]
 [ext_resource type="PackedScene" uid="uid://c65ovcsfy68bd" path="res://assets/models/door.glb" id="2_6ggwl"]
 [ext_resource type="PackedScene" uid="uid://cx1t64q6n6hl6" path="res://scenes/player/player.tscn" id="3_75aiw"]
-[ext_resource type="PackedScene" uid="uid://c1riew33xe3aq" path="res://assets/models/chair.glb" id="3_pgt5o"]
 [ext_resource type="PackedScene" uid="uid://dxa8xtqr7xgxb" path="res://scenes/props/lights/spot_light_simple.tscn" id="4_l83in"]
-[ext_resource type="PackedScene" uid="uid://b8u8lg0q386my" path="res://assets/models/wheelchair.glb" id="4_nhkeb"]
+[ext_resource type="PackedScene" uid="uid://bpd7ymb7nneuj" path="res://assets/models/chair.tscn" id="5_fb1am"]
+[ext_resource type="PackedScene" uid="uid://cno4wp71jlixo" path="res://assets/models/wheelchair.tscn" id="5_qjoyh"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0hhuj"]
 material = ExtResource("1_0hhuj")
@@ -209,14 +209,14 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.5127378, 0, 0.182469
 [node name="door8" parent="Props" unique_id=89227635 instance=ExtResource("2_6ggwl")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.558712, 0, 0.18246949)
 
-[node name="chair" parent="Props" unique_id=1806697545 instance=ExtResource("3_pgt5o")]
-transform = Transform3D(0.29651976, 0, -0.40258667, 0, 0.5, 0, 0.40258667, 0, 0.29651976, 8.515379, 0.43898627, -0.73210907)
-
-[node name="chair3" parent="Props" unique_id=739988650 instance=ExtResource("3_pgt5o")]
+[node name="chair2" parent="Props" unique_id=2090081282 instance=ExtResource("5_fb1am")]
 transform = Transform3D(-0.33931702, 0, -0.36723828, 0, 0.5, 0, 0.36723828, 0, -0.33931702, 0.2915616, 0.43898627, 1.1850405)
 
-[node name="wheelchair" parent="Props" unique_id=1366926973 instance=ExtResource("4_nhkeb")]
-transform = Transform3D(0.43516496, 0, 0.24623455, 0, 0.5, 0, -0.24623455, 0, 0.43516496, -4.5677476, -0.18730825, -1.4894929)
+[node name="chair3" parent="Props" unique_id=646920376 instance=ExtResource("5_fb1am")]
+transform = Transform3D(0.29651976, 0, -0.40258667, 0, 0.5, 0, 0.40258667, 0, 0.29651976, 8.515379, 0.43898627, -0.73210907)
+
+[node name="wheelchair2" parent="Props" unique_id=500139668 instance=ExtResource("5_qjoyh")]
+transform = Transform3D(0.43516496, 0, 0.24623455, 0, 0.5, 0, -0.24623455, 0, 0.43516496, -4.7871375, 0.6337005, -1.1804316)
 
 [node name="Player" parent="." unique_id=798795127 instance=ExtResource("3_75aiw")]
 transform = Transform3D(0.63883495, 0, 0.7693438, 0, 1, 0, -0.7693438, 0, 0.63883495, 2.4123077, 0.16431761, 0.81243026)
