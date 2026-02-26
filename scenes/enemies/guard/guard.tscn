@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" uid="uid://1s12dvjvaa0a" path="res://scenes/enemies/guard/guard.gd" id="1_g8ras"]
 [ext_resource type="AudioStream" uid="uid://cifwjds3nvu2v" path="res://assets/sounds/cough.wav" id="2_g173s"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_afuhh"]
-height = 1.8
+[ext_resource type="PackedScene" uid="uid://crjk8mq5lwbh5" path="res://assets/models/guard.glb" id="3_pnkgp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g8ras"]
-size = Vector3(1, 1.736206, 1)
+size = Vector3(1, 2.824646, 0.74780273)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g8ras"]
 radius = 5.0
@@ -16,10 +14,9 @@ radius = 5.0
 script = ExtResource("1_g8ras")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1888721959]
-mesh = SubResource("CapsuleMesh_afuhh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1310724303]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.057800293, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4166123, 0.048217773)
 shape = SubResource("BoxShape3D_g8ras")
 
 [node name="Sight" type="Area3D" parent="." unique_id=735660095]
@@ -30,5 +27,8 @@ shape = SubResource("SphereShape3D_g8ras")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1563524888]
 stream = ExtResource("2_g173s")
 volume_db = -10.0
+
+[node name="guard" parent="." unique_id=116855466 instance=ExtResource("3_pnkgp")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
