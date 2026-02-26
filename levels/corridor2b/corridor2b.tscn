@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://dvv2rfaib46kk"]
+
+[ext_resource type="Material" uid="uid://d2wuvwotxphge" path="res://assets/materials/wall_grey.tres" id="1_0hhuj"]
+[ext_resource type="PackedScene" uid="uid://c65ovcsfy68bd" path="res://assets/models/door.glb" id="2_6ggwl"]
+[ext_resource type="PackedScene" uid="uid://cx1t64q6n6hl6" path="res://scenes/player/player.tscn" id="3_75aiw"]
+[ext_resource type="PackedScene" uid="uid://dxa8xtqr7xgxb" path="res://scenes/props/lights/spot_light_simple.tscn" id="4_l83in"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0hhuj"]
+material = ExtResource("1_0hhuj")
+size = Vector2(18, 3)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0hhuj"]
+data = PackedVector3Array(9, 0, 1.5, -9, 0, 1.5, 9, 0, -1.5, -9, 0, 1.5, -9, 0, -1.5, 9, 0, -1.5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yh840"]
+material = ExtResource("1_0hhuj")
+size = Vector2(18, 3.25)
+orientation = 2
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6ggwl"]
+data = PackedVector3Array(9, -1.625, 0, -9, -1.625, 0, 9, 1.625, 0, -9, -1.625, 0, -9, 1.625, 0, 9, 1.625, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6ggwl"]
+material = ExtResource("1_0hhuj")
+flip_faces = true
+size = Vector2(18, 3.25)
+orientation = 2
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_75aiw"]
+data = PackedVector3Array(-9, -1.625, 0, 9, -1.625, 0, 9, 1.625, 0, -9, 1.625, 0, -9, -1.625, 0, 9, 1.625, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_75aiw"]
+material = ExtResource("1_0hhuj")
+flip_faces = true
+size = Vector2(3.25, 3.25)
+orientation = 0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_l83in"]
+data = PackedVector3Array(0, -1.625, 1.625, 0, -1.625, -1.625, 0, 1.625, -1.625, 0, 1.625, 1.625, 0, -1.625, 1.625, 0, 1.625, -1.625)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l83in"]
+material = ExtResource("1_0hhuj")
+flip_faces = true
+size = Vector2(18, 3)
+
+[node name="Corridor2b" type="Node3D" unique_id=170621927]
+
+[node name="Walls" type="Node" parent="." unique_id=6259969]
+
+[node name="Floor" type="MeshInstance3D" parent="Walls" unique_id=1222671048]
+mesh = SubResource("PlaneMesh_0hhuj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/Floor" unique_id=180455687]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Floor/StaticBody3D" unique_id=1274699274]
+shape = SubResource("ConcavePolygonShape3D_0hhuj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls" unique_id=573513705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4985292, -1.495151)
+mesh = SubResource("PlaneMesh_yh840")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/MeshInstance3D" unique_id=874106535]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D/StaticBody3D" unique_id=235630700]
+shape = SubResource("ConcavePolygonShape3D_6ggwl")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Walls" unique_id=164372420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.518667, 1.4875466)
+mesh = SubResource("PlaneMesh_6ggwl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/MeshInstance3D2" unique_id=1641145603]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D2/StaticBody3D" unique_id=230835254]
+shape = SubResource("ConcavePolygonShape3D_75aiw")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Walls" unique_id=2120553872]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.995144, 1.4861695, 0)
+mesh = SubResource("PlaneMesh_75aiw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/MeshInstance3D3" unique_id=1427503443]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D3/StaticBody3D" unique_id=2010265474]
+shape = SubResource("ConcavePolygonShape3D_l83in")
+
+[node name="Ceiling" type="MeshInstance3D" parent="Walls" unique_id=1927970590]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+mesh = SubResource("PlaneMesh_l83in")
+
+[node name="Props" type="Node" parent="." unique_id=917766844]
+
+[node name="door" parent="Props" unique_id=1893736036 instance=ExtResource("2_6ggwl")]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 8.315367, 0, -0.19250262)
+
+[node name="door2" parent="Props" unique_id=94729118 instance=ExtResource("2_6ggwl")]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 4.3335605, 0, -0.19250262)
+
+[node name="door3" parent="Props" unique_id=1606158229 instance=ExtResource("2_6ggwl")]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0.33676338, 0, -0.19250262)
+
+[node name="door4" parent="Props" unique_id=646634178 instance=ExtResource("2_6ggwl")]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, -3.7092106, 0, -0.19250262)
+
+[node name="door5" parent="Props" unique_id=431904221 instance=ExtResource("2_6ggwl")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.4658656, 0, 0.18246949)
+
+[node name="door6" parent="Props" unique_id=1885374883 instance=ExtResource("2_6ggwl")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.48405933, 0, 0.18246949)
+
+[node name="door7" parent="Props" unique_id=728029351 instance=ExtResource("2_6ggwl")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.5127378, 0, 0.18246949)
+
+[node name="door8" parent="Props" unique_id=89227635 instance=ExtResource("2_6ggwl")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.558712, 0, 0.18246949)
+
+[node name="Player" parent="." unique_id=798795127 instance=ExtResource("3_75aiw")]
+transform = Transform3D(0.63883495, 0, 0.7693438, 0, 1, 0, -0.7693438, 0, 0.63883495, 2.4123077, 0.16431761, 0.81243026)
+
+[node name="SpotLight3D" parent="." unique_id=83524157 instance=ExtResource("4_l83in")]
+transform = Transform3D(1, 0, 0, 0, 0.009983092, 0.9999502, 0, -0.9999502, 0.009983092, 0.37995553, 2.9247742, 0)
+
+[node name="SpotLight3D2" parent="." unique_id=497191399 instance=ExtResource("4_l83in")]
+transform = Transform3D(1, 0, 0, 0, 0.009983092, 0.9999502, 0, -0.9999502, 0.009983092, 6.443967, 2.9247742, 0)
+
+[node name="SpotLight3D3" parent="." unique_id=326003954 instance=ExtResource("4_l83in")]
+transform = Transform3D(1, 0, 0, 0, 0.009983092, 0.9999502, 0, -0.9999502, 0.009983092, -5.5888042, 2.9247742, 0)
