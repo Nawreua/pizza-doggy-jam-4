@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cx1t64q6n6hl6" path="res://scenes/player/player.tscn" id="1_xdukt"]
 [ext_resource type="Texture2D" uid="uid://bg4j3n41p84kd" path="res://assets/textures/window.png" id="2_j4gsr"]
 [ext_resource type="PackedScene" uid="uid://c6qgbxwytntu0" path="res://assets/models/door.tscn" id="3_nhgb8"]
+[ext_resource type="Script" uid="uid://ckiinf2oss6nx" path="res://scripts/level_transition.gd" id="4_4nxun"]
+[ext_resource type="VideoStream" uid="uid://cjc0if3ipn2il" path="res://assets/videos/door_opening_low_res.ogv" id="4_iyrh7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7i53"]
 albedo_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
@@ -68,10 +70,13 @@ orientation = 2
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4nxun"]
 data = PackedVector3Array(-2, -1.625, 0, 2, -1.625, 0, 2, 1.625, 0, -2, 1.625, 0, -2, -1.625, 0, 2, 1.625, 0)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nhgb8"]
+size = Vector3(2.6918945, 4.9942017, 1.8306732)
+
 [node name="Room213" type="Node3D" unique_id=1320894127]
 
 [node name="Player" parent="." unique_id=798795127 instance=ExtResource("1_xdukt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51902586, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67909247, 0)
 
 [node name="Walls" type="Node" parent="." unique_id=727796655]
 
@@ -134,3 +139,31 @@ texture = ExtResource("2_j4gsr")
 
 [node name="door" parent="." unique_id=1893736036 instance=ExtResource("3_nhgb8")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.27796984, 1.3951334, 2.487606)
+
+[node name="Area3D" type="Area3D" parent="door" unique_id=1117609834 node_paths=PackedStringArray("stream")]
+script = ExtResource("4_4nxun")
+scene = "res://tests/test.tscn"
+stream = NodePath("AspectRatioContainer/VideoStreamPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door/Area3D" unique_id=980694951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84594727, -0.30264282, 0.07770538)
+shape = SubResource("BoxShape3D_nhgb8")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="door/Area3D" unique_id=1168784655]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="door/Area3D/AspectRatioContainer" unique_id=1203061311]
+layout_mode = 2
+stream = ExtResource("4_iyrh7")
+expand = true
+
+[connection signal="body_entered" from="door/Area3D" to="door/Area3D" method="_on_body_entered"]
+[connection signal="finished" from="door/Area3D/AspectRatioContainer/VideoStreamPlayer" to="door/Area3D" method="_on_video_stream_player_finished"]
