@@ -76,7 +76,7 @@ size = Vector3(2.6918945, 4.9942017, 1.8306732)
 [node name="Room213" type="Node3D" unique_id=1320894127]
 
 [node name="Player" parent="." unique_id=798795127 instance=ExtResource("1_xdukt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67909247, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22016239, 0)
 
 [node name="Walls" type="Node" parent="." unique_id=727796655]
 

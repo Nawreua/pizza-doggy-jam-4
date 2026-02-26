@@ -4,18 +4,18 @@
 [ext_resource type="PackedScene" uid="uid://cno4wp71jlixo" path="res://assets/models/wheelchair.tscn" id="2_dovo2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8afob"]
-size = Vector3(1, 1.3867188, 0.9145508)
+size = Vector3(0.5822754, 1.1681519, 0.57928467)
 
 [node name="Player" type="CharacterBody3D" unique_id=798795127]
 script = ExtResource("1_8afob")
 
 [node name="Head" type="Camera3D" parent="." unique_id=1392039368]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7445827, -0.19308528)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81572634, -0.26306772)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1276230510]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18346071, -0.2723153)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0015869141, 0.41975832, -0.17218712)
 shape = SubResource("BoxShape3D_8afob")
 
 [node name="wheelchair" parent="." unique_id=1366926973 instance=ExtResource("2_dovo2")]
 process_mode = 4
-transform = Transform3D(-0.75, 0, -6.556708e-08, 0, 0.75, 0, 6.556708e-08, 0, -0.75, 0, 0.47154665, 0)
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, 0.47154665, 0)
