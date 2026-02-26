@@ -11,6 +11,12 @@ var falling_speed: float = 9.1
 
 @onready var head = $Head
 
+func capture_mouse():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _ready() -> void:
+	capture_mouse()
+
 func _input(event: InputEvent) -> void:
 	# Handle camera inputs
 	if event is InputEventMouseMotion:
