@@ -11,6 +11,8 @@ var falling_speed: float = 9.1
 
 @onready var head = $Head
 
+@onready var audio = $AudioStreamPlayer3D
+
 func capture_mouse():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -39,6 +41,11 @@ func _physics_process(delta: float) -> void:
 		var angle = Vector3.FORWARD.rotated(Vector3.UP, rotation.y)
 		velocity += sign(input.y) * angle * speed * delta
 		velocity.y = 0
+		
+	# Handle audio
+	if input.x != 0 or input.y != 0:
+		if not audio.playing:
+			audio.play()
 	
 	# Gravity
 	if not is_on_floor():
@@ -49,3 +56,8 @@ func _physics_process(delta: float) -> void:
 	# Slowdown
 	velocity.x = sign(velocity.x) * max(abs(velocity.x) - (slowdown * delta), 0)
 	velocity.z = sign(velocity.z) * max(abs(velocity.z) - (slowdown * delta), 0)
+	
+	# If speed falls below 0, cut audio
+	if input.x == 0 and input.y == 0:
+		if velocity.x > -0.01 and velocity.x < 0.01 and velocity.z > -0.01 and velocity.z < 0.01:
+			audio.stop()

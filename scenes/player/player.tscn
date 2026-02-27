@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3bbt1c1nvpco" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://cno4wp71jlixo" path="res://assets/models/wheelchair.tscn" id="2_dovo2"]
+[ext_resource type="AudioStream" uid="uid://141317ds7ta4" path="res://assets/sounds/wheelchair.wav" id="3_gmlin"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8afob"]
 size = Vector3(0.5822754, 1.1681519, 0.57928467)
@@ -10,7 +11,7 @@ size = Vector3(0.5822754, 1.1681519, 0.57928467)
 script = ExtResource("1_8afob")
 
 [node name="Head" type="Camera3D" parent="." unique_id=1392039368]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81572634, -0.26306772)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79644936, -0.19955763)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1276230510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0015869141, 0.41975832, -0.17218712)
@@ -19,3 +20,8 @@ shape = SubResource("BoxShape3D_8afob")
 [node name="wheelchair" parent="." unique_id=1366926973 instance=ExtResource("2_dovo2")]
 process_mode = 4
 transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, 0.47154665, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1515159388]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06545621, -0.17719412)
+stream = ExtResource("3_gmlin")
+volume_db = -30.0
