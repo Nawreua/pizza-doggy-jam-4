@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dxa8xtqr7xgxb" path="res://scenes/props/lights/spot_light_simple.tscn" id="3_wfikd"]
 [ext_resource type="Script" uid="uid://ckiinf2oss6nx" path="res://scripts/level_transition.gd" id="4_4nxun"]
 [ext_resource type="VideoStream" uid="uid://cjc0if3ipn2il" path="res://assets/videos/door_opening_low_res.ogv" id="4_iyrh7"]
+[ext_resource type="AudioStream" uid="uid://b2rlqq73x5kio" path="res://assets/sounds/door.wav" id="8_lq7wg"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_s7i53"]
 material = ExtResource("2_27s84")
@@ -122,10 +123,11 @@ texture = ExtResource("2_j4gsr")
 [node name="door" parent="." unique_id=1893736036 instance=ExtResource("3_nhgb8")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.27796984, 1.3951334, 2.487606)
 
-[node name="Area3D" type="Area3D" parent="door" unique_id=1117609834 node_paths=PackedStringArray("stream")]
+[node name="Area3D" type="Area3D" parent="door" unique_id=1117609834 node_paths=PackedStringArray("stream", "audio")]
 script = ExtResource("4_4nxun")
 scene = "res://levels/corridor2b/corridor2b.tscn"
 stream = NodePath("AspectRatioContainer/VideoStreamPlayer")
+audio = NodePath("AudioStreamPlayer3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door/Area3D" unique_id=980694951]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84594727, -0.30264282, 0.07770538)
@@ -146,6 +148,10 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 stream = ExtResource("4_iyrh7")
 expand = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door/Area3D" unique_id=40195940]
+stream = ExtResource("8_lq7wg")
+volume_db = -20.0
 
 [connection signal="body_entered" from="door/Area3D" to="door/Area3D" method="_on_body_entered"]
 [connection signal="finished" from="door/Area3D/AspectRatioContainer/VideoStreamPlayer" to="door/Area3D" method="_on_video_stream_player_finished"]
