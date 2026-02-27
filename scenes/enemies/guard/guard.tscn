@@ -28,6 +28,7 @@ shape = SubResource("SphereShape3D_g8ras")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6732819, 0)
 stream = ExtResource("2_g173s")
 volume_db = -10.0
+unit_size = 5.0
 
 [node name="guard" parent="." unique_id=116855466 instance=ExtResource("3_pnkgp")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

@@ -20,13 +20,13 @@ func _physics_process(delta: float) -> void:
 	if target:
 		motion = (target.position - position)
 		motion.y = 0
-		if not $AudioStreamPlayer3D.playing and randi() % 50 == 0:
+		if not $AudioStreamPlayer3D.playing and randi() % 100 == 0:
 			$AudioStreamPlayer3D.play()
 	elif patrol:
 		# At random, we recalculate the patrol
 		if randi() % 20 == 0:
 			random_motion = Vector3(randf_range(-0.5, 0.5), 0, randf_range(-0.5, 0.5))
-			if not $AudioStreamPlayer3D.playing and randi() % 10 == 0:
+			if not $AudioStreamPlayer3D.playing and randi() % 20 == 0:
 				$AudioStreamPlayer3D.play()
 	
 	var collision = move_and_collide(motion * delta)
