@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bn2icmswbhaq5"]
+
+[ext_resource type="Script" uid="uid://ck4urypx50c5g" path="res://scenes/enemies/patient/patient.gd" id="1_jhr0m"]
+[ext_resource type="PackedScene" uid="uid://c56w34vxbnxee" path="res://assets/models/old.glb" id="1_uijds"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uijds"]
+size = Vector3(0.5795288, 1.1352539, 0.6656494)
+
+[node name="Patient" type="RigidBody3D" unique_id=1558303827]
+script = ExtResource("1_jhr0m")
+
+[node name="old" parent="." unique_id=1585868347 instance=ExtResource("1_uijds")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5644358, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=104791334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00015258789, 0.17651367, 0.14971924)
+shape = SubResource("BoxShape3D_uijds")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=386602056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5949701, 0.23636058)
+volume_db = -15.0
+
+[node name="Timer" type="Timer" parent="." unique_id=1855796010]
+one_shot = true
+
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
