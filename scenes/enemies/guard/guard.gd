@@ -6,6 +6,13 @@ extends RigidBody3D
 var random_motion: Vector3 = Vector3.ZERO
 var target: Node3D = null
 
+func calculate_patrol():
+	random_motion = Vector3(randf_range(-0.5, 0.5), 0, randf_range(-0.5, 0.5))
+
+func _ready() -> void:
+	if patrol:
+		calculate_patrol()
+
 func target_seen(body: Node3D):
 	target = body
 	$AudioStreamPlayer3D.stop()
@@ -24,10 +31,16 @@ func _physics_process(delta: float) -> void:
 			$AudioStreamPlayer3D.play()
 	elif patrol:
 		# At random, we recalculate the patrol
-		if randi() % 20 == 0:
-			random_motion = Vector3(randf_range(-0.5, 0.5), 0, randf_range(-0.5, 0.5))
-			if not $AudioStreamPlayer3D.playing and randi() % 20 == 0:
-				$AudioStreamPlayer3D.play()
+		if randi() % 40 == 0:
+			calculate_patrol()
+	
+	# Cough if no target
+	if not target and not $AudioStreamPlayer3D.playing and randi() % 50 == 0:
+		$AudioStreamPlayer3D.play()
+	
+	# Turn the guard upon moving
+	rotation.y = -Vector3.FORWARD.angle_to(motion)
+	# rotate_y(rotate_toward(rotation.y, Vector3.FORWARD.angle_to(motion), delta))
 	
 	var collision = move_and_collide(motion * delta)
 	# If player caught
