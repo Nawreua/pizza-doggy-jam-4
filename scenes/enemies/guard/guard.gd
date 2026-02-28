@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 			calculate_patrol()
 	
 	# Cough if no target
-	if not target and not $AudioStreamPlayer3D.playing and randi() % 50 == 0:
+	if not target and not $AudioStreamPlayer3D.playing and randi() % 100 == 0:
 		$AudioStreamPlayer3D.play()
 	
 	# Turn the guard upon moving
