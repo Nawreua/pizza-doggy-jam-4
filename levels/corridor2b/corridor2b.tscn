@@ -2,10 +2,14 @@
 
 [ext_resource type="Material" uid="uid://d2wuvwotxphge" path="res://assets/materials/wall_grey.tres" id="1_0hhuj"]
 [ext_resource type="PackedScene" uid="uid://c65ovcsfy68bd" path="res://assets/models/door.glb" id="2_6ggwl"]
+[ext_resource type="PackedScene" uid="uid://b4uvaw3j5s1um" path="res://assets/models/elevator.tscn" id="2_qjoyh"]
 [ext_resource type="PackedScene" uid="uid://cx1t64q6n6hl6" path="res://scenes/player/player.tscn" id="3_75aiw"]
 [ext_resource type="PackedScene" uid="uid://dxa8xtqr7xgxb" path="res://scenes/props/lights/spot_light_simple.tscn" id="4_l83in"]
 [ext_resource type="PackedScene" uid="uid://bpd7ymb7nneuj" path="res://assets/models/chair.tscn" id="5_fb1am"]
 [ext_resource type="PackedScene" uid="uid://cno4wp71jlixo" path="res://assets/models/wheelchair.tscn" id="5_qjoyh"]
+[ext_resource type="PackedScene" uid="uid://c6qgbxwytntu0" path="res://assets/models/door.tscn" id="6_4xrjk"]
+[ext_resource type="PackedScene" uid="uid://csik5uujsuj0w" path="res://scenes/enemies/guard/guard.tscn" id="7_fb1am"]
+[ext_resource type="PackedScene" uid="uid://bn2icmswbhaq5" path="res://scenes/enemies/patient/patient.tscn" id="9_6kdt7"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0hhuj"]
 material = ExtResource("1_0hhuj")
@@ -212,11 +216,20 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.558712, 0, 0.1824694
 [node name="chair2" parent="Props" unique_id=2090081282 instance=ExtResource("5_fb1am")]
 transform = Transform3D(-0.33931702, 0, -0.36723828, 0, 0.5, 0, 0.36723828, 0, -0.33931702, 0.2915616, 0.43898627, 1.1850405)
 
-[node name="chair3" parent="Props" unique_id=646920376 instance=ExtResource("5_fb1am")]
-transform = Transform3D(0.29651976, 0, -0.40258667, 0, 0.5, 0, 0.40258667, 0, 0.29651976, 8.515379, 0.43898627, -0.73210907)
+[node name="chair" parent="Props" unique_id=1806697545 instance=ExtResource("5_fb1am")]
+transform = Transform3D(0.37792102, 0, -0.327377, 0, 0.5, 0, 0.327377, 0, 0.37792102, -9.68113, 0.43898743, -20.764883)
 
 [node name="wheelchair2" parent="Props" unique_id=500139668 instance=ExtResource("5_qjoyh")]
 transform = Transform3D(0.43516496, 0, 0.24623455, 0, 0.5, 0, -0.24623455, 0, 0.43516496, -4.7871375, 0.6337005, -1.1804316)
+
+[node name="elevator" parent="Props" unique_id=1634464330 instance=ExtResource("2_qjoyh")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, -9.197418, 0.008288622, -13.784207)
+
+[node name="chair3" parent="Props" unique_id=878597953 instance=ExtResource("5_fb1am")]
+transform = Transform3D(0.32898343, 0, 0.37652344, 0, 0.5, 0, -0.37652344, 0, 0.32898343, -11.103792, 0.4389875, -9.027962)
+
+[node name="door9" parent="Props" unique_id=678815111 instance=ExtResource("6_4xrjk")]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, -9.022962, 1.3994005, -18.803722)
 
 [node name="Player" parent="." unique_id=798795127 instance=ExtResource("3_75aiw")]
 transform = Transform3D(0.63883495, 0, 0.7693438, 0, 1, 0, -0.7693438, 0, 0.63883495, 2.4123077, 0.16431761, 0.81243026)
@@ -240,3 +253,17 @@ transform = Transform3D(1, 0, 0, 0, 0.009983092, 0.9999502, 0, -0.9999502, 0.009
 
 [node name="SpotLight3D6" parent="Lights" unique_id=20096126 instance=ExtResource("4_l83in")]
 transform = Transform3D(1, 0, 0, 0, 0.009983092, 0.9999502, 0, -0.9999502, 0.009983092, -10.42477, 2.9247742, -19.920664)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights" unique_id=1471924945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6292925, 2.743043, -15.277873)
+light_color = Color(0.003921569, 0.59607846, 0.2509804, 1)
+omni_range = 1.0
+
+[node name="Guard" parent="." unique_id=491004259 instance=ExtResource("7_fb1am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.798763, 0.04810989, -14.925079)
+
+[node name="Patient" parent="." unique_id=1818606296 instance=ExtResource("9_6kdt7")]
+transform = Transform3D(0.39386168, 0, 0.9191697, 0, 1, 0, -0.9191697, 0, 0.39386168, -11.662716, 0.3911134, -2.9592862)
+
+[node name="Patient2" parent="." unique_id=1558303827 instance=ExtResource("9_6kdt7")]
+transform = Transform3D(0.51250756, 0, -0.85868275, 0, 1, 0, 0.85868275, 0, 0.51250756, 8.358257, 0.39111328, -0.9678777)
