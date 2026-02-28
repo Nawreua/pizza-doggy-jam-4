@@ -16,6 +16,11 @@ var falling_speed: float = 9.1
 func capture_mouse():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+func unsettle():
+	var tween = get_tree().create_tween()
+	await tween.tween_property(head, "fov", 179, 1).finished
+	get_tree().change_scene_to_file("res://levels/room213/room213.tscn")
+
 func _ready() -> void:
 	capture_mouse()
 

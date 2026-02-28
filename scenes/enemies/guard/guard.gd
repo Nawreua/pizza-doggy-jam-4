@@ -45,7 +45,8 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(motion * delta)
 	# If player caught
 	if collision and collision.get_collider() is Player:
-		get_tree().change_scene_to_file("res://levels/room213/room213.tscn")
+		(collision.get_collider() as Player).unsettle()
+		process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_sight_body_entered(body: Node3D) -> void:
 	if body is Player:
