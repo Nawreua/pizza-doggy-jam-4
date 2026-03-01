@@ -10,7 +10,7 @@ var falling_speed: float = 9.1
 @export var vertical_sens: float = 0.003
 
 @onready var head = $Head
-
+@onready var light = $Head/SpotLight3D
 @onready var audio = $AudioStreamPlayer3D
 
 func capture_mouse():
@@ -33,6 +33,9 @@ func _input(event: InputEvent) -> void:
 		head.rotation.y = clamp(head.rotation.y, deg_to_rad(-60.0), deg_to_rad(60.0))
 		
 	if event is InputEventKey:
+		# Switch torchlight
+		if event.is_action_pressed(&"action_light"):
+			light.visible = not light.visible
 		# Quit the game
 		if event.is_action_pressed(&"exit"):
 			get_tree().quit()

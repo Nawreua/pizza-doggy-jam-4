@@ -13,6 +13,11 @@ script = ExtResource("1_8afob")
 [node name="Head" type="Camera3D" parent="." unique_id=1392039368]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79644936, -0.19955763)
 
+[node name="SpotLight3D" type="SpotLight3D" parent="Head" unique_id=940300896]
+transform = Transform3D(1, 0, 0, 0, 0.9961947, -0.08715574, 0, 0.08715574, 0.9961947, 0.13650554, -0.28381395, 0.10817179)
+spot_range = 7.0
+spot_angle = 10.0
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1276230510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0015869141, 0.41975832, -0.17218712)
 shape = SubResource("BoxShape3D_8afob")
