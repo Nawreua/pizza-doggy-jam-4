@@ -13,6 +13,8 @@ var falling_speed: float = 9.1
 @onready var light = $Head/SpotLight3D
 @onready var audio = $AudioStreamPlayer3D
 
+@onready var tween_light: Tween = get_tree().create_tween()
+
 func capture_mouse():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -23,6 +25,10 @@ func unsettle():
 
 func _ready() -> void:
 	capture_mouse()
+	# Setup light tween
+	tween_light.tween_property(light, "spot_range", 0, 20)
+	if not light.visible:
+		tween_light.pause()
 
 func _input(event: InputEvent) -> void:
 	# Handle camera inputs
@@ -36,6 +42,10 @@ func _input(event: InputEvent) -> void:
 		# Switch torchlight
 		if event.is_action_pressed(&"action_light"):
 			light.visible = not light.visible
+			if light.visible:
+				tween_light.play()
+			else:
+				tween_light.pause()
 		# Quit the game
 		if event.is_action_pressed(&"exit"):
 			get_tree().quit()
