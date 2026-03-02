@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://ckiinf2oss6nx" path="res://scripts/level_transition.gd" id="4_4nxun"]
 [ext_resource type="VideoStream" uid="uid://cjc0if3ipn2il" path="res://assets/videos/door_opening_low_res.ogv" id="4_iyrh7"]
 [ext_resource type="AudioStream" uid="uid://b2rlqq73x5kio" path="res://assets/sounds/door.wav" id="8_lq7wg"]
+[ext_resource type="Texture2D" uid="uid://csftj1fvkoodd" path="res://assets/textures/e.png" id="9_nhtdp"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_s7i53"]
 material = ExtResource("2_27s84")
@@ -152,6 +153,11 @@ expand = true
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="door/Area3D" unique_id=40195940]
 stream = ExtResource("8_lq7wg")
 volume_db = -20.0
+
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=30019854]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.14104128, 0.90416133, -2.4998412)
+shaded = true
+texture = ExtResource("9_nhtdp")
 
 [connection signal="body_entered" from="door/Area3D" to="door/Area3D" method="_on_body_entered"]
 [connection signal="finished" from="door/Area3D/AspectRatioContainer/VideoStreamPlayer" to="door/Area3D" method="_on_video_stream_player_finished"]
