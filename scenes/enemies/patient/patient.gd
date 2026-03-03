@@ -17,7 +17,7 @@ func _ready() -> void:
 	play_sound()
 
 func _on_audio_stream_player_3d_finished() -> void:
-	$Timer.start(randi() % 5 + 5)
+	$Timer.start(randi() % 15 + 5)
 
 func _on_timer_timeout() -> void:
 	play_sound()
