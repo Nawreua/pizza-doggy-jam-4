@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://csik5uujsuj0w" path="res://scenes/enemies/guard/guard.tscn" id="5_2pvnj"]
 [ext_resource type="PackedScene" uid="uid://bn2icmswbhaq5" path="res://scenes/enemies/patient/patient.tscn" id="6_xr31c"]
 [ext_resource type="PackedScene" uid="uid://dcp52s3ulehpy" path="res://assets/models/round_table.tscn" id="7_fnmd4"]
+[ext_resource type="AudioStream" uid="uid://jlhvjv1t51ff" path="res://assets/sounds/blabla.wav" id="7_qsfco"]
 [ext_resource type="PackedScene" uid="uid://c6qgbxwytntu0" path="res://assets/models/door.tscn" id="8_1rfss"]
 [ext_resource type="PackedScene" uid="uid://bh24mf70x6kdj" path="res://assets/models/uranium_queen.tscn" id="9_p3dqk"]
 
@@ -468,6 +469,11 @@ transform = Transform3D(0.99999994, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0
 light_color = Color(0.6784314, 0.84705883, 0.9019608, 1)
 omni_range = 2.0
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Props/uranium_queen" unique_id=828958583]
+stream = ExtResource("7_qsfco")
+volume_db = -10.0
+autoplay = true
+
 [node name="chair8" parent="Props" unique_id=659681608 instance=ExtResource("4_rrdwu")]
 transform = Transform3D(-0.32432568, 0, 0.38054284, 0, 0.5, 0, -0.38054284, 0, -0.32432568, 2.2994373, 0.43898773, -6.3739495)
 
@@ -535,7 +541,7 @@ transform = Transform3D(0.60447395, 0, -0.7966249, 0, 1, 0, 0.7966249, 0, 0.6044
 normal_speed = 5.0
 
 [node name="Guard6" parent="Enemies" unique_id=2130038071 instance=ExtResource("5_2pvnj")]
-transform = Transform3D(0.8463977, 0, 0.53255135, 0, 1, 0, -0.53255135, 0, 0.8463977, 5.2023783, 0.046934754, 9.65237)
+transform = Transform3D(0.8463977, 0, 0.53255135, 0, 1, 0, -0.53255135, 0, 0.8463977, -2.793623, 0.046934754, 6.601758)
 
 [node name="Guard7" parent="Enemies" unique_id=2052420748 instance=ExtResource("5_2pvnj")]
 transform = Transform3D(0.3871616, 0, 0.92201185, 0, 1, 0, -0.92201185, 0, 0.3871616, -16.933764, 0.0027236044, 6.3526077)
