@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://3bbt1c1nvpco" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://cno4wp71jlixo" path="res://assets/models/wheelchair.tscn" id="2_dovo2"]
 [ext_resource type="AudioStream" uid="uid://141317ds7ta4" path="res://assets/sounds/wheelchair.wav" id="3_gmlin"]
+[ext_resource type="Texture2D" uid="uid://cknfcud04kcy8" path="res://assets/textures/dot.png" id="4_lvxji"]
+[ext_resource type="PackedScene" uid="uid://c56w34vxbnxee" path="res://assets/models/old.glb" id="5_p47bc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8afob"]
 size = Vector3(0.5822754, 1.1681519, 0.57928467)
@@ -11,12 +13,8 @@ size = Vector3(0.5822754, 1.1681519, 0.57928467)
 script = ExtResource("1_8afob")
 
 [node name="Head" type="Camera3D" parent="." unique_id=1392039368]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79644936, -0.19955763)
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Head" unique_id=940300896]
-transform = Transform3D(1, 0, 0, 0, 0.9961947, -0.08715574, 0, 0.08715574, 0.9961947, 0.13650554, -0.28381395, 0.10817179)
-spot_range = 50.0
-spot_angle = 10.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6525991, -0.0681963)
+fov = 90.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1276230510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0015869141, 0.41975832, -0.17218712)
@@ -30,3 +28,21 @@ transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06545621, -0.17719412)
 stream = ExtResource("3_gmlin")
 volume_db = -30.0
+
+[node name="Guide" type="Sprite3D" parent="." unique_id=245608381]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.66688824, -0.71512395)
+visible = false
+texture = ExtResource("4_lvxji")
+
+[node name="Shoulder" type="Camera3D" parent="." unique_id=163833212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
+visible = false
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=940300896]
+transform = Transform3D(1, 0, 0, 0, 0.9914449, -0.1305262, 0, 0.1305262, 0.9914449, 0.13650554, 0.40153313, -0.2581004)
+spot_range = 50.0
+spot_angle = 10.0
+
+[node name="old" parent="." unique_id=1585868347 instance=ExtResource("5_p47bc")]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, -0.3503059, -0.04462114)
+visible = false

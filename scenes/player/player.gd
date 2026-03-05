@@ -3,29 +3,52 @@ class_name Player extends CharacterBody3D
 @export var speed: float = 5
 @export var slowdown: float = 3
 @export var rotation_speed: float = 0.75
+@export var first_person: bool = true
 
 var falling_speed: float = 9.1
+
+var current_camera: Camera3D = null
 
 @export var horizontal_sens: float = 0.003
 @export var vertical_sens: float = 0.003
 
 @onready var head = $Head
-@onready var light = $Head/SpotLight3D
+@onready var shoulder = $Shoulder
+@onready var light = $SpotLight3D
 @onready var audio = $AudioStreamPlayer3D
+@onready var guide = $Guide
 
 @onready var tween_light: Tween = get_tree().create_tween()
 
 func capture_mouse():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+func shift_perspective():
+	if first_person:
+		head.visible = true
+		$old.visible = false
+		shoulder.visible = false
+		$wheelchair.visible = true
+		current_camera = head
+		#guide.visible = true
+	else:
+		head.visible = false
+		$old.visible = true
+		shoulder.visible = true
+		$wheelchair.visible = false
+		current_camera = shoulder
+		#guide.visible = false
+	current_camera.make_current()
+
 func unsettle():
 	var tween = get_tree().create_tween()
-	await tween.tween_property(head, "fov", 179, 1).finished
+	await tween.tween_property(current_camera, "fov", 179, 1).finished
 	# get_tree().change_scene_to_file("res://levels/room213/room213.tscn")
 	get_tree().reload_current_scene()
 
 func _ready() -> void:
 	capture_mouse()
+	shift_perspective()
 	# Setup light tween
 	tween_light.set_loops()
 	tween_light.tween_property(light, "spot_range", 10, 20)
@@ -37,10 +60,13 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	# Handle camera inputs
 	if event is InputEventMouseMotion:
-		head.rotation.x -= event.relative.y * vertical_sens
-		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-30.0), deg_to_rad(30.0))
-		head.rotation.y -= event.relative.x * horizontal_sens
-		head.rotation.y = clamp(head.rotation.y, deg_to_rad(-60.0), deg_to_rad(60.0))
+		current_camera.rotation.x -= event.relative.y * vertical_sens
+		current_camera.rotation.x = clamp(current_camera.rotation.x, deg_to_rad(-30.0), deg_to_rad(30.0))
+		current_camera.rotation.y -= event.relative.x * horizontal_sens
+		current_camera.rotation.y = clamp(current_camera.rotation.y, deg_to_rad(-50.0), deg_to_rad(50.0))
+		
+		light.rotation.x = current_camera.rotation.x + deg_to_rad(7.5)
+		light.rotation.y = current_camera.rotation.y
 		
 	if event is InputEventKey:
 		# Switch torchlight
@@ -50,6 +76,10 @@ func _input(event: InputEvent) -> void:
 				tween_light.play()
 			else:
 				tween_light.pause()
+		# Perspective shift
+		if event.is_action_pressed(&"camera_shift"):
+			first_person = not first_person
+			shift_perspective()
 		# Quit the game
 		if event.is_action_pressed(&"exit"):
 			get_tree().quit()
