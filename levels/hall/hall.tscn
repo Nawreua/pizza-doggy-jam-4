@@ -11,6 +11,9 @@
 [ext_resource type="AudioStream" uid="uid://jlhvjv1t51ff" path="res://assets/sounds/blabla.wav" id="7_qsfco"]
 [ext_resource type="PackedScene" uid="uid://c6qgbxwytntu0" path="res://assets/models/door.tscn" id="8_1rfss"]
 [ext_resource type="PackedScene" uid="uid://bh24mf70x6kdj" path="res://assets/models/uranium_queen.tscn" id="9_p3dqk"]
+[ext_resource type="Script" uid="uid://ckiinf2oss6nx" path="res://scripts/level_transition.gd" id="12_uff3g"]
+[ext_resource type="VideoStream" uid="uid://bwbo6n8eq0mpb" path="res://assets/videos/ending.ogv" id="13_1k41c"]
+[ext_resource type="AudioStream" uid="uid://b2rlqq73x5kio" path="res://assets/sounds/door.wav" id="14_1k41c"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kcbju"]
 material = ExtResource("1_1xi0k")
@@ -201,6 +204,9 @@ size = Vector3(1.5, 0.5, 1.2)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_042ww"]
 data = PackedVector3Array(-0.75, 0.25, 0.59999996, 0.75, 0.25, 0.59999996, -0.75, -0.25, 0.59999996, 0.75, 0.25, 0.59999996, 0.75, -0.25, 0.59999996, -0.75, -0.25, 0.59999996, 0.75, 0.25, -0.59999996, -0.75, 0.25, -0.59999996, 0.75, -0.25, -0.59999996, -0.75, 0.25, -0.59999996, -0.75, -0.25, -0.59999996, 0.75, -0.25, -0.59999996, 0.75, 0.25, 0.59999996, 0.75, 0.25, -0.59999996, 0.75, -0.25, 0.59999996, 0.75, 0.25, -0.59999996, 0.75, -0.25, -0.59999996, 0.75, -0.25, 0.59999996, -0.75, 0.25, -0.59999996, -0.75, 0.25, 0.59999996, -0.75, -0.25, -0.59999996, -0.75, 0.25, 0.59999996, -0.75, -0.25, 0.59999996, -0.75, -0.25, -0.59999996, 0.75, 0.25, 0.59999996, -0.75, 0.25, 0.59999996, 0.75, 0.25, -0.59999996, -0.75, 0.25, 0.59999996, -0.75, 0.25, -0.59999996, 0.75, 0.25, -0.59999996, -0.75, -0.25, 0.59999996, 0.75, -0.25, 0.59999996, -0.75, -0.25, -0.59999996, 0.75, -0.25, 0.59999996, 0.75, -0.25, -0.59999996, -0.75, -0.25, -0.59999996)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qsfco"]
+size = Vector3(2.3638306, 3.069336, 0.9296875)
+
 [node name="Hall" type="Node3D" unique_id=515744327]
 
 [node name="Walls" type="Node" parent="." unique_id=448349849]
@@ -293,10 +299,10 @@ shape = SubResource("ConcavePolygonShape3D_1rfss")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1.4906759, 8)
 mesh = SubResource("PlaneMesh_p3dqk")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D9" unique_id=1086525585]
-shape = SubResource("ConcavePolygonShape3D_p3dqk")
-
 [node name="StaticBody3D" type="StaticBody3D" parent="Walls/MeshInstance3D9" unique_id=744381297]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D9/StaticBody3D" unique_id=1086525585]
+shape = SubResource("ConcavePolygonShape3D_p3dqk")
 
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="Walls" unique_id=2083178572]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1.425807, 0)
@@ -502,7 +508,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 0.009983092, 0.9999502, 0, -0.9999502, 0.009983092, -3.1918175, 2.9027548, 7.2397814)
 
 [node name="SpotLight3D8" parent="Lights" unique_id=1279318947 instance=ExtResource("3_dec7f")]
-transform = Transform3D(1, 0, 0, 0, 0.009983092, 0.9999502, 0, -0.9999502, 0.009983092, -9.72555, 2.865221, 3.137035)
+transform = Transform3D(1, 0, 0, 0, 0.009983092, 0.9999502, 0, -0.9999502, 0.009983092, -11.037569, 2.865221, 2.6612732)
 
 [node name="SpotLight3D9" parent="Lights" unique_id=1834469292 instance=ExtResource("3_dec7f")]
 transform = Transform3D(1, 0, 0, 0, 0.009983092, 0.9999502, 0, -0.9999502, 0.009983092, -13.453358, 2.9027548, -4.605523)
@@ -521,6 +527,12 @@ transform = Transform3D(1, 0, 0, 0, 0.009983092, 0.9999502, 0, -0.9999502, 0.009
 
 [node name="SpotLight3D12" parent="Lights" unique_id=758811432 instance=ExtResource("3_dec7f")]
 transform = Transform3D(1, 0, 0, 0, 0.009983092, 0.9999502, 0, -0.9999502, 0.009983092, 13.752658, 2.9027548, -9.331504)
+visible = false
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights" unique_id=1105710547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.49461, 2.7018776, 0.16864634)
+light_color = Color(0.003921569, 0.59607846, 0.2509804, 1)
+omni_range = 1.0
 
 [node name="Enemies" type="Node" parent="." unique_id=930941745]
 
@@ -544,7 +556,7 @@ normal_speed = 5.0
 transform = Transform3D(0.8463977, 0, 0.53255135, 0, 1, 0, -0.53255135, 0, 0.8463977, -2.793623, 0.046934754, 6.601758)
 
 [node name="Guard7" parent="Enemies" unique_id=2052420748 instance=ExtResource("5_2pvnj")]
-transform = Transform3D(0.3871616, 0, 0.92201185, 0, 1, 0, -0.92201185, 0, 0.3871616, -16.933764, 0.0027236044, 6.3526077)
+transform = Transform3D(0.3871616, 0, 0.92201185, 0, 1, 0, -0.92201185, 0, 0.3871616, -16.676126, 0.0027236044, 6.3526077)
 
 [node name="Patient" parent="Enemies" unique_id=1558303827 instance=ExtResource("6_xr31c")]
 transform = Transform3D(-0.8378711, 0, 0.54586816, 0, 1, 0, -0.54586816, 0, -0.8378711, -7.9569597, 0.39111328, 8.435237)
@@ -565,4 +577,44 @@ transform = Transform3D(-0.92335767, 0, -0.38394096, 0, 1, 0, 0.38394096, 0, -0.
 transform = Transform3D(0.565255, 0, -0.82491624, 0, 1, 0, 0.82491624, 0, 0.565255, 12.597415, 0.39111328, 8.820987)
 
 [node name="Player" parent="." unique_id=798795127 instance=ExtResource("3_hubcc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.923039, 0.16431761, 1.6229444)
+transform = Transform3D(0.41987976, 0, 0.9075797, 0, 1, 0, -0.9075797, 0, 0.41987976, 12.827767, 0.16431749, 0.5965247)
+
+[node name="Exit" type="Node" parent="." unique_id=1230703919]
+
+[node name="door3" parent="Exit" unique_id=571769710 instance=ExtResource("8_1rfss")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14.965039, 1.3994004, 11.88458)
+
+[node name="door4" parent="Exit" unique_id=1721950097 instance=ExtResource("8_1rfss")]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, -14.614266, 1.3994004, 11.88458)
+
+[node name="Area3D" type="Area3D" parent="Exit" unique_id=1801783351 node_paths=PackedStringArray("stream")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.88198, -2.3841858e-07, 11.903195)
+script = ExtResource("12_uff3g")
+scene = "res://levels/room213/room213.tscn"
+stream = NodePath("AspectRatioContainer/VideoStreamPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit/Area3D" unique_id=288550532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.040985107, 1.034668, 0.03515625)
+shape = SubResource("BoxShape3D_qsfco")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Exit/Area3D" unique_id=1528305796]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 3
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Exit/Area3D/AspectRatioContainer" unique_id=1484247705]
+layout_mode = 2
+stream = ExtResource("13_1k41c")
+expand = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Exit/Area3D" unique_id=1521510695]
+stream = ExtResource("14_1k41c")
+volume_db = -20.0
+
+[connection signal="body_entered" from="Exit/Area3D" to="Exit/Area3D" method="_on_body_entered"]
+[connection signal="finished" from="Exit/Area3D/AspectRatioContainer/VideoStreamPlayer" to="Exit/Area3D" method="_on_video_stream_player_finished"]
