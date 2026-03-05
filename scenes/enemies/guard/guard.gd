@@ -19,6 +19,10 @@ func target_seen(body: Node3D):
 	$AudioStreamPlayer3D.stream = load("res://assets/sounds/hey.wav")
 	$AudioStreamPlayer3D.play()
 
+func target_unseen(body: Node3D):
+	if body == target:
+		target = null
+
 func _physics_process(delta: float) -> void:
 	# By default, we move following the random patrol
 	var motion = random_motion * normal_speed
@@ -55,3 +59,7 @@ func _on_sight_body_entered(body: Node3D) -> void:
 		var result = get_world_3d().direct_space_state.intersect_ray(query)
 		if result.has(&"collider") and result[&"collider"] is Player:
 			target_seen(body)
+
+func _on_sight_body_exited(body: Node3D) -> void:
+	if body is Player:
+		target_unseen(body)
