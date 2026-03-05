@@ -8,7 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bpd7ymb7nneuj" path="res://assets/models/chair.tscn" id="5_fb1am"]
 [ext_resource type="PackedScene" uid="uid://cno4wp71jlixo" path="res://assets/models/wheelchair.tscn" id="5_qjoyh"]
 [ext_resource type="PackedScene" uid="uid://c6qgbxwytntu0" path="res://assets/models/door.tscn" id="6_4xrjk"]
+[ext_resource type="Script" uid="uid://ckiinf2oss6nx" path="res://scripts/level_transition.gd" id="6_p414p"]
+[ext_resource type="VideoStream" uid="uid://cjc0if3ipn2il" path="res://assets/videos/door_opening_low_res.ogv" id="7_1dvff"]
 [ext_resource type="PackedScene" uid="uid://csik5uujsuj0w" path="res://scenes/enemies/guard/guard.tscn" id="7_fb1am"]
+[ext_resource type="AudioStream" uid="uid://b2rlqq73x5kio" path="res://assets/sounds/door.wav" id="8_u4wkg"]
 [ext_resource type="PackedScene" uid="uid://bn2icmswbhaq5" path="res://scenes/enemies/patient/patient.tscn" id="9_6kdt7"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0hhuj"]
@@ -94,6 +97,9 @@ data = PackedVector3Array(0, -1.625, 11.5, 0, -1.625, -11.5, 0, 1.625, -11.5, 0,
 material = ExtResource("1_0hhuj")
 flip_faces = true
 size = Vector2(3, 24)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4xrjk"]
+size = Vector3(5.319214, 6.440979, 2.134201)
 
 [node name="Corridor2b" type="Node3D" unique_id=170621927]
 
@@ -225,6 +231,35 @@ transform = Transform3D(0.43516496, 0, 0.24623455, 0, 0.5, 0, -0.24623455, 0, 0.
 [node name="elevator" parent="Props" unique_id=1634464330 instance=ExtResource("2_qjoyh")]
 transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, -9.197418, 0.008288622, -13.784207)
 
+[node name="Area3D" type="Area3D" parent="Props/elevator" unique_id=260210898 node_paths=PackedStringArray("stream", "audio")]
+script = ExtResource("6_p414p")
+scene = "res://levels/hall/hall.tscn"
+stream = NodePath("AspectRatioContainer/VideoStreamPlayer")
+audio = NodePath("AudioStreamPlayer3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/elevator/Area3D" unique_id=836038164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78326416, 2.7204895, -0.30008698)
+shape = SubResource("BoxShape3D_4xrjk")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Props/elevator/Area3D" unique_id=1690515892]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 3
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Props/elevator/Area3D/AspectRatioContainer" unique_id=1938128887]
+layout_mode = 2
+stream = ExtResource("7_1dvff")
+expand = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Props/elevator/Area3D" unique_id=621475867]
+stream = ExtResource("8_u4wkg")
+volume_db = -20.0
+
 [node name="chair3" parent="Props" unique_id=878597953 instance=ExtResource("5_fb1am")]
 transform = Transform3D(0.32898343, 0, 0.37652344, 0, 0.5, 0, -0.37652344, 0, 0.32898343, -11.103792, 0.4389875, -9.027962)
 
@@ -260,10 +295,13 @@ light_color = Color(0.003921569, 0.59607846, 0.2509804, 1)
 omni_range = 1.0
 
 [node name="Guard" parent="." unique_id=491004259 instance=ExtResource("7_fb1am")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.798763, 0.04810989, -14.925079)
+transform = Transform3D(0.42588985, 0, -0.90477496, 0, 1, 0, 0.90477496, 0, 0.42588985, -10.553642, 0.04810989, -19.152678)
 
 [node name="Patient" parent="." unique_id=1818606296 instance=ExtResource("9_6kdt7")]
 transform = Transform3D(0.39386168, 0, 0.9191697, 0, 1, 0, -0.9191697, 0, 0.39386168, -11.662716, 0.3911134, -2.9592862)
 
 [node name="Patient2" parent="." unique_id=1558303827 instance=ExtResource("9_6kdt7")]
 transform = Transform3D(0.51250756, 0, -0.85868275, 0, 1, 0, 0.85868275, 0, 0.51250756, 8.358257, 0.39111328, -0.9678777)
+
+[connection signal="body_entered" from="Props/elevator/Area3D" to="Props/elevator/Area3D" method="_on_body_entered"]
+[connection signal="finished" from="Props/elevator/Area3D/AspectRatioContainer/VideoStreamPlayer" to="Props/elevator/Area3D" method="_on_video_stream_player_finished"]
