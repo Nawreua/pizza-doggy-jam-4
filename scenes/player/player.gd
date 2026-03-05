@@ -2,7 +2,7 @@ class_name Player extends CharacterBody3D
 
 @export var speed: float = 5
 @export var slowdown: float = 3
-@export var rotation_speed: float = 0.5
+@export var rotation_speed: float = 0.75
 
 var falling_speed: float = 9.1
 
@@ -21,12 +21,16 @@ func capture_mouse():
 func unsettle():
 	var tween = get_tree().create_tween()
 	await tween.tween_property(head, "fov", 179, 1).finished
-	get_tree().change_scene_to_file("res://levels/room213/room213.tscn")
+	# get_tree().change_scene_to_file("res://levels/room213/room213.tscn")
+	get_tree().reload_current_scene()
 
 func _ready() -> void:
 	capture_mouse()
 	# Setup light tween
-	tween_light.tween_property(light, "spot_range", 0, 20)
+	tween_light.set_loops()
+	tween_light.tween_property(light, "spot_range", 10, 20)
+	tween_light.set_loops()
+	tween_light.tween_property(light, "spot_range", 50, 20)
 	if not light.visible:
 		tween_light.pause()
 
