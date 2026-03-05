@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bh24mf70x6kdj" path="res://assets/models/uranium_queen.tscn" id="9_p3dqk"]
 [ext_resource type="Script" uid="uid://ckiinf2oss6nx" path="res://scripts/level_transition.gd" id="12_uff3g"]
 [ext_resource type="VideoStream" uid="uid://bwbo6n8eq0mpb" path="res://assets/videos/ending.ogv" id="13_1k41c"]
-[ext_resource type="AudioStream" uid="uid://b2rlqq73x5kio" path="res://assets/sounds/door.wav" id="14_1k41c"]
+[ext_resource type="AudioStream" uid="uid://cat1l1b2rsvwg" path="res://assets/sounds/cry_1.wav" id="14_1k41c"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kcbju"]
 material = ExtResource("1_1xi0k")
@@ -530,7 +530,7 @@ transform = Transform3D(1, 0, 0, 0, 0.009983092, 0.9999502, 0, -0.9999502, 0.009
 visible = false
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Lights" unique_id=1105710547]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.49461, 2.7018776, 0.16864634)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.776573, 2.7018776, 1.7663355)
 light_color = Color(0.003921569, 0.59607846, 0.2509804, 1)
 omni_range = 1.0
 
@@ -543,20 +543,20 @@ transform = Transform3D(-0.85239387, 0, -0.5229003, 0, 1, 0, 0.5229003, 0, -0.85
 transform = Transform3D(0.4350425, 0, 0.90040994, 0, 1, 0, -0.90040994, 0, 0.4350425, 7.365489, 0.030510575, -10.172637)
 
 [node name="Guard3" parent="Enemies" unique_id=471491516 instance=ExtResource("5_2pvnj")]
-transform = Transform3D(0.71497315, 0, -0.69915193, 0, 1, 0, 0.69915193, 0, 0.71497315, -1.3413882, 0.04408565, -10.7141075)
+transform = Transform3D(0.81581473, 0, 0.57831335, 0, 1, 0, -0.57831335, 0, 0.81581473, -1.3413882, 0.04408565, -6.593192)
 
 [node name="Guard4" parent="Enemies" unique_id=236087944 instance=ExtResource("5_2pvnj")]
-transform = Transform3D(0.75270224, 0, 0.6583611, 0, 1, 0, -0.6583611, 0, 0.75270224, -11.782884, 0.0027240813, -10.756086)
+transform = Transform3D(-0.2284868, 0, 0.973547, 0, 1, 0, -0.973547, 0, -0.2284868, 10.261723, 0.0027240813, 9.423754)
 
 [node name="Guard5" parent="Enemies" unique_id=1909655869 instance=ExtResource("5_2pvnj")]
 transform = Transform3D(0.60447395, 0, -0.7966249, 0, 1, 0, 0.7966249, 0, 0.60447395, -10.266509, 0.0027236044, -4.798689)
 normal_speed = 5.0
 
 [node name="Guard6" parent="Enemies" unique_id=2130038071 instance=ExtResource("5_2pvnj")]
-transform = Transform3D(0.8463977, 0, 0.53255135, 0, 1, 0, -0.53255135, 0, 0.8463977, -2.793623, 0.046934754, 6.601758)
+transform = Transform3D(0.8463977, 0, 0.53255135, 0, 1, 0, -0.53255135, 0, 0.8463977, -5.9233656, 0.046934754, 9.64271)
 
 [node name="Guard7" parent="Enemies" unique_id=2052420748 instance=ExtResource("5_2pvnj")]
-transform = Transform3D(0.3871616, 0, 0.92201185, 0, 1, 0, -0.92201185, 0, 0.3871616, -16.676126, 0.0027236044, 6.3526077)
+transform = Transform3D(-0.7829774, 0, 0.6220501, 0, 1, 0, -0.6220501, 0, -0.7829774, 3.951027, 0.0027236044, 9.312233)
 
 [node name="Patient" parent="Enemies" unique_id=1558303827 instance=ExtResource("6_xr31c")]
 transform = Transform3D(-0.8378711, 0, 0.54586816, 0, 1, 0, -0.54586816, 0, -0.8378711, -7.9569597, 0.39111328, 8.435237)
@@ -587,11 +587,12 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14.965039, 1.3994004, 
 [node name="door4" parent="Exit" unique_id=1721950097 instance=ExtResource("8_1rfss")]
 transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, -14.614266, 1.3994004, 11.88458)
 
-[node name="Area3D" type="Area3D" parent="Exit" unique_id=1801783351 node_paths=PackedStringArray("stream")]
+[node name="Area3D" type="Area3D" parent="Exit" unique_id=1801783351 node_paths=PackedStringArray("stream", "audio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.88198, -2.3841858e-07, 11.903195)
 script = ExtResource("12_uff3g")
 scene = "res://levels/room213/room213.tscn"
 stream = NodePath("AspectRatioContainer/VideoStreamPlayer")
+audio = NodePath("AudioStreamPlayer3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Exit/Area3D" unique_id=288550532]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.040985107, 1.034668, 0.03515625)
