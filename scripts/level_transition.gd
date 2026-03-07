@@ -4,6 +4,8 @@ extends Area3D
 @export var stream: VideoStreamPlayer
 @export var audio: AudioStreamPlayer3D
 
+@onready var packed: PackedScene = load(scene)
+
 func _on_body_entered(body: Node3D) -> void:
 	if body is Player:
 		body.process_mode = Node.PROCESS_MODE_DISABLED
@@ -12,4 +14,4 @@ func _on_body_entered(body: Node3D) -> void:
 		stream.play()
 
 func _on_video_stream_player_finished() -> void:
-	get_tree().change_scene_to_file(scene)
+	get_tree().call_deferred("change_scene_to_packed", packed)
