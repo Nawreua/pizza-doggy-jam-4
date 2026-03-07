@@ -553,7 +553,7 @@ transform = Transform3D(0.60447395, 0, -0.7966249, 0, 1, 0, 0.7966249, 0, 0.6044
 normal_speed = 5.0
 
 [node name="Guard6" parent="Enemies" unique_id=2130038071 instance=ExtResource("5_2pvnj")]
-transform = Transform3D(0.8463977, 0, 0.53255135, 0, 1, 0, -0.53255135, 0, 0.8463977, -5.9233656, 0.046934754, 9.64271)
+transform = Transform3D(-0.7404411, 0, 0.6721213, 0, 1, 0, -0.6721213, 0, -0.7404411, -17.335197, 0.046934754, 10.761481)
 
 [node name="Guard7" parent="Enemies" unique_id=2052420748 instance=ExtResource("5_2pvnj")]
 transform = Transform3D(-0.7829774, 0, 0.6220501, 0, 1, 0, -0.6220501, 0, -0.7829774, 3.951027, 0.0027236044, 9.312233)
