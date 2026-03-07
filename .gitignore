@@ -1,8 +1,10 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
-web/
+
+# Export
+export/
 
 # Test scene
 tests/test.tscn
-web.zip
+*.zip
