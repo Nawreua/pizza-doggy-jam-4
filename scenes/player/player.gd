@@ -44,9 +44,16 @@ func unsettle():
 	# get_tree().change_scene_to_file("res://levels/room213/room213.tscn")
 	get_tree().reload_current_scene()
 
+func erode_shader(value: float):
+	$CanvasLayer/ColorRect.set_instance_shader_parameter("opacity", value)
+	$CanvasLayer/ColorRect.set_instance_shader_parameter("noise_intensity", min(value, 0.3))
+
 func _ready() -> void:
 	capture_mouse()
 	shift_perspective()
+	# Setup shader erosion
+	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC)
+	tween.tween_method(erode_shader, 0.1, 1.0, 90)
 
 func _input(event: InputEvent) -> void:
 	# Handle camera inputs

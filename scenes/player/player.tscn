@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cx1t64q6n6hl6"]
 
 [ext_resource type="Script" uid="uid://3bbt1c1nvpco" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="Shader" uid="uid://c0kj4847rriu4" path="res://scripts/lofi_retro_camera_filter.gdshader" id="2_75vfm"]
 [ext_resource type="PackedScene" uid="uid://cno4wp71jlixo" path="res://assets/models/wheelchair.tscn" id="2_dovo2"]
 [ext_resource type="AudioStream" uid="uid://141317ds7ta4" path="res://assets/sounds/wheelchair.wav" id="3_gmlin"]
 [ext_resource type="Texture2D" uid="uid://cknfcud04kcy8" path="res://assets/textures/dot.png" id="4_lvxji"]
@@ -8,6 +9,12 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8afob"]
 size = Vector3(0.5822754, 1.1681519, 0.57928467)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0owmy"]
+shader = ExtResource("2_75vfm")
+shader_parameter/pixel_size = 3.0
+shader_parameter/vhs_intensity = 3.0
+shader_parameter/noise_intensity = 0.15
 
 [node name="Player" type="CharacterBody3D" unique_id=798795127]
 script = ExtResource("1_8afob")
@@ -46,3 +53,15 @@ spot_angle = 10.0
 [node name="old" parent="." unique_id=1585868347 instance=ExtResource("5_p47bc")]
 transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, -0.3503059, -0.04462114)
 visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1320919227]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=925394898]
+material = SubResource("ShaderMaterial_0owmy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
