@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://cno4wp71jlixo" path="res://assets/models/wheelchair.tscn" id="5_qjoyh"]
 [ext_resource type="PackedScene" uid="uid://c6qgbxwytntu0" path="res://assets/models/door.tscn" id="6_4xrjk"]
 [ext_resource type="Script" uid="uid://ckiinf2oss6nx" path="res://scripts/level_transition.gd" id="6_p414p"]
-[ext_resource type="VideoStream" uid="uid://cjc0if3ipn2il" path="res://assets/videos/door_opening_low_res.ogv" id="7_1dvff"]
 [ext_resource type="PackedScene" uid="uid://csik5uujsuj0w" path="res://scenes/enemies/guard/guard.tscn" id="7_fb1am"]
-[ext_resource type="AudioStream" uid="uid://b2rlqq73x5kio" path="res://assets/sounds/door.wav" id="8_u4wkg"]
+[ext_resource type="VideoStream" uid="uid://c00xpws4p0j1m" path="res://assets/videos/elevator_opening.ogv" id="7_u4wkg"]
+[ext_resource type="AudioStream" uid="uid://cca088tl70sbv" path="res://assets/sounds/elevator_opening.wav" id="8_thlfj"]
 [ext_resource type="PackedScene" uid="uid://bn2icmswbhaq5" path="res://scenes/enemies/patient/patient.tscn" id="9_6kdt7"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0hhuj"]
@@ -253,12 +253,12 @@ stretch_mode = 3
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Props/elevator/Area3D/AspectRatioContainer" unique_id=1938128887]
 layout_mode = 2
-stream = ExtResource("7_1dvff")
+stream = ExtResource("7_u4wkg")
 expand = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Props/elevator/Area3D" unique_id=621475867]
-stream = ExtResource("8_u4wkg")
-volume_db = -20.0
+stream = ExtResource("8_thlfj")
+volume_db = 10.0
 
 [node name="chair3" parent="Props" unique_id=878597953 instance=ExtResource("5_fb1am")]
 transform = Transform3D(0.32898343, 0, 0.37652344, 0, 0.5, 0, -0.37652344, 0, 0.32898343, -11.103792, 0.4389875, -9.027962)
