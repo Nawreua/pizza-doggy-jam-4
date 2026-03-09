@@ -53,7 +53,7 @@ func _ready() -> void:
 	shift_perspective()
 	# Setup shader erosion
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC)
-	tween.tween_method(erode_shader, 0.1, 1.0, 90)
+	tween.tween_method(erode_shader, 0.1, 1.0, 120)
 
 func _input(event: InputEvent) -> void:
 	# Handle camera inputs

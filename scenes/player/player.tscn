@@ -14,7 +14,6 @@ size = Vector3(0.5822754, 1.1681519, 0.57928467)
 shader = ExtResource("2_75vfm")
 shader_parameter/pixel_size = 3.0
 shader_parameter/vhs_intensity = 3.0
-shader_parameter/noise_intensity = 0.15
 
 [node name="Player" type="CharacterBody3D" unique_id=798795127]
 script = ExtResource("1_8afob")
